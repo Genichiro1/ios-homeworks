@@ -8,13 +8,12 @@
 import UIKit
 
 class InfoViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    let button = UIButton()
+    
+    func openAlertButton() {
         
-        self.view.backgroundColor = .white
-
-        let button = UIButton()
+        self.view.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Open Alert", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -22,24 +21,30 @@ class InfoViewController: UIViewController {
             self.showAlert()
         }), for: .touchUpInside)
         
-        self.view.addSubview(button)
-        
         button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         button.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
     }
     
-    func showAlert() {
-        let alert = UIAlertController(title: "Хотите Чаю?", message: "или Кофе", preferredStyle: .alert)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        openAlertButton()
+        self.view.backgroundColor = .white
         
-        let coffe = UIAlertAction(title: "Кофе", style: .default) {_ in
-            print("Хочу кофе")
-        }
-        let tea = UIAlertAction(title: "Чаю", style: .destructive) {_ in
-            print("Хочу чаю")
-        }
-        
-        alert.addAction(coffe)
-        alert.addAction(tea)
-        self.present(alert, animated: true)
     }
-}
+        
+        func showAlert() {
+            let alert = UIAlertController(title: "Хотите Чаю?", message: "или Кофе", preferredStyle: .alert)
+            
+            let coffe = UIAlertAction(title: "Кофе", style: .default) {_ in
+                print("Хочу кофе")
+            }
+            let tea = UIAlertAction(title: "Чаю", style: .destructive) {_ in
+                print("Хочу чаю")
+            }
+            
+            alert.addAction(coffe)
+            alert.addAction(tea)
+            self.present(alert, animated: true)
+        }
+    }
+
